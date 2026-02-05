@@ -53,7 +53,7 @@ class TestCreateLead:
 class TestListLeads:
     def test_list_leads_requires_auth(self, client: TestClient):
         resp = client.get("/api/leads")
-        assert resp.status_code == 403
+        assert resp.status_code == 401
 
     def test_list_leads_invalid_key(self, client: TestClient):
         resp = client.get("/api/leads", headers={"X-API-Key": "wrong"})

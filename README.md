@@ -84,6 +84,35 @@ curl -X PUT http://127.0.0.1:8000/api/leads/{id} \
   -d '{"state": "REACHED_OUT"}'
 ```
 
+## Manual Verification
+
+Test each endpoint locally after starting the server:
+
+**1. Create a lead (public):**
+```bash
+curl -X POST http://127.0.0.1:8000/api/leads -F "first_name=Jane" -F "last_name=Doe" -F "email=jane@example.com"
+```
+
+**2. List all leads:**
+```bash
+curl http://127.0.0.1:8000/api/leads -H "X-API-Key: changeme-to-a-secure-key"
+```
+
+**3. Get a specific lead** (replace `{id}` with an actual ID from step 1):
+```bash
+curl http://127.0.0.1:8000/api/leads/{id} -H "X-API-Key: changeme-to-a-secure-key"
+```
+
+**4. Update lead state to REACHED_OUT:**
+```bash
+curl -X PUT http://127.0.0.1:8000/api/leads/{id} -H "X-API-Key: changeme-to-a-secure-key" -H "Content-Type: application/json" -d '{"state": "REACHED_OUT"}'
+```
+
+**5. Soft-delete a lead:**
+```bash
+curl -X DELETE http://127.0.0.1:8000/api/leads/{id} -H "X-API-Key: changeme-to-a-secure-key"
+```
+
 ## Interactive API Docs
 
 Visit `http://127.0.0.1:8000/docs` for Swagger UI where you can test all endpoints interactively.
